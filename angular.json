@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mf-data-puller": {
+    "mf-cockpit-data-puller": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -18,11 +21,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/mf-data-puller",
+            "outputPath": "dist/mf-cockpit-data-puller",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/main.single-spa.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -33,7 +36,13 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "extra-webpack.config.js",
+              "libraryName": "mf-cockpit-navbar",
+              "libraryTarget": "umd"
+            },
+            "deployUrl": "/mf-cockpit-data-puller/"
           },
           "configurations": {
             "production": {
@@ -55,7 +64,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "none"
             },
             "development": {
               "buildOptimizer": false,
@@ -63,19 +72,20 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "outputHashing": "none"
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "mf-data-puller:build:production"
+              "browserTarget": "mf-cockpit-data-puller:build:production"
             },
             "development": {
-              "browserTarget": "mf-data-puller:build:development"
+              "browserTarget": "mf-cockpit-data-puller:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mf-data-puller:build"
+            "browserTarget": "mf-cockpit-data-puller:build"
           }
         },
         "test": {
@@ -107,5 +117,5 @@
       }
     }
   },
-  "defaultProject": "mf-data-puller"
+  "defaultProject": "mf-cockpit-data-puller"
 }

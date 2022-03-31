@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mf-data-puller';
+  title = 'mf-cockpit-data-puller';
 }
