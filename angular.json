@@ -33,9 +33,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles/styles.scss"],
             "scripts": [],
             "customWebpackConfig": {
               "path": "extra-webpack.config.js",
@@ -80,6 +78,10 @@
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "mf-cockpit-data-puller:build",
+            "proxyConfig": "./proxy.conf.js"
+          },
           "configurations": {
             "production": {
               "browserTarget": "mf-cockpit-data-puller:build:production"
@@ -108,9 +110,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles/styles.scss"],
             "scripts": []
           }
         }

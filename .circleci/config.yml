@@ -49,7 +49,7 @@ workflows:
             branches:
               only:
                 - master
-                - intro-view
+                - SN-1326-fetch-data
             tags:
               only: /.*/
 

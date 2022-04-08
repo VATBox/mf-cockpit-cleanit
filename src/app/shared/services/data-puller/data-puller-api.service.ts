@@ -1,0 +1,17 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FetchRequestModel } from '~/manual-fetch/models/fetch.model';
+import { Observable } from 'rxjs';
+
+@Injectable()
+export class DataPullerApiService {
+  public static DATA_PULLER_SERVICE_NAME = 'datapuller';
+  public static API_BASE = `/api/${DataPullerApiService.DATA_PULLER_SERVICE_NAME}/v2`;
+  public static FETCH_DATA_API = `${DataPullerApiService.API_BASE}/data/pull`;
+
+  constructor(private http: HttpClient) {}
+
+  public fetchData(data: FetchRequestModel): Observable<any> {
+    return this.http.post(DataPullerApiService.FETCH_DATA_API, data);
+  }
+}
