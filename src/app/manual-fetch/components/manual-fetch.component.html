@@ -36,4 +36,9 @@
       </a>
     </div>
   </form>
+  <div class="loading-section" *ngIf="loading$ | async">
+    <div>
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </div>
 </div>

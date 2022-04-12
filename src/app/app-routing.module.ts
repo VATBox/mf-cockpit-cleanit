@@ -8,6 +8,10 @@ const routes: Routes = [
     path: 'manual-fetch',
     loadChildren: () => import('./manual-fetch/manual-fetch.module').then(m => m.ManualFetchModule),
   },
+  {
+    path: 'fetch-history',
+    loadChildren: () => import('./fetch-history/fetch-history.module').then(m => m.FetchHistoryModule),
+  },
   { path: '**', component: EmptyRouteComponent },
 ];
 

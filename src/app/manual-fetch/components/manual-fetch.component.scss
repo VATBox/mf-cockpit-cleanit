@@ -1,4 +1,5 @@
 .manual-fetch-container {
+  position: relative;
   font-size: 14px;
   padding: 20px;
   .form-row {
@@ -8,5 +9,20 @@
     .mat-flat-button {
       float: right;
     }
+  }
+  .loading-section {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    opacity: 0.5;
+  }
+  .loading-section > div {
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
   }
 }

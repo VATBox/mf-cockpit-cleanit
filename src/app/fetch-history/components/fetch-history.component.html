@@ -1,0 +1,6 @@
+<div class="fetch-history-container" fxLayout="column" fxLayoutGap="20px">
+  <h1>Fetch History</h1>
+  <div class='job-list-content'>
+    <history-table [jobs]='jobList$ | async' [loading]='loading$ | async'></history-table>
+  </div>
+</div>

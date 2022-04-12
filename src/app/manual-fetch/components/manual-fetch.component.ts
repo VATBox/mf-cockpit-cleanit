@@ -2,10 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-import { FetchRequestModel } from '../models/fetch.model';
 import { ConfirmDialogComponent } from './dialogs/confirm/confirm-dialog.component';
 import { Observable } from 'rxjs';
-import { DataPullerSource } from '~/shared/models/data-puller.model';
+import { DataPullerSource, FetchRequestModel } from '~/shared/models/data-puller.model';
 import { FetchService } from '~/manual-fetch/services/fetch.service';
 import { Account } from '~/shared/models/account.model';
 
@@ -17,6 +16,7 @@ import { Account } from '~/shared/models/account.model';
 export class ManualFetchComponent implements OnInit, OnDestroy {
   public fetchForm: FormGroup;
   public sources$: Observable<DataPullerSource[]>;
+  public loading$: Observable<boolean>;
   public accounts$: Observable<Account[]>;
 
   constructor(private fb: FormBuilder, private dialog: MatDialog, private service: FetchService) {
@@ -28,6 +28,7 @@ export class ManualFetchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.loading$ = this.service.loading$;
     this.sources$ = this.service.sources$;
     this.accounts$ = this.service.accounts$;
   }
