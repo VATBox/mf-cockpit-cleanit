@@ -11,11 +11,15 @@ import { EmptyRouteComponent } from '~/empty-route/empty-route.component';
 import { DataPullerApiService } from '~/shared/services/data-puller/data-puller-api.service';
 import { ConfigurationAPIService } from '~/shared/services/configuration/configuration-api.service';
 import { AccountSetupApiService } from '~/shared/services/account-setup/account-setup-api.service';
+import { ChartComponent } from '~/shared/components/charts/chart-component';
+import { AccountByIdPipe } from '~/shared/pipes/account-by-id.pipe';
 
 @NgModule({
   declarations: [
     // Components
+    ChartComponent,
     EmptyRouteComponent,
+    AccountByIdPipe,
     // Directives
   ],
   imports: [
@@ -32,6 +36,7 @@ import { AccountSetupApiService } from '~/shared/services/account-setup/account-
   exports: [
     // Components
     EmptyRouteComponent,
+    ChartComponent,
     // Modules
     CommonModule,
     FormsModule,
@@ -41,9 +46,15 @@ import { AccountSetupApiService } from '~/shared/services/account-setup/account-
     HttpClientModule,
     CdkModule,
     MaterialModule,
-    // Directives,
+    // Pipes,
+    AccountByIdPipe,
   ],
-  providers: [DataPullerApiService, ConfigurationAPIService, AccountSetupApiService],
+  providers: [
+    DataPullerApiService,
+    ConfigurationAPIService,
+    AccountSetupApiService,
+    AccountByIdPipe,
+  ],
   entryComponents: [],
 })
 export class SharedModule {}

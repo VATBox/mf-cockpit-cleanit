@@ -4,21 +4,29 @@
       <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
       <mat-cell *matCellDef="let job">{{job.id}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="accountId">
-      <mat-header-cell *matHeaderCellDef>Account Id</mat-header-cell>
-      <mat-cell *matCellDef="let job">{{job.accountId}}</mat-cell>
+    <ng-container matColumnDef="account">
+      <mat-header-cell *matHeaderCellDef>Account</mat-header-cell>
+      <mat-cell *matCellDef="let job">{{(job.account_id | accountById)?.name}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="serviceName">
       <mat-header-cell *matHeaderCellDef>Service Name</mat-header-cell>
-      <mat-cell *matCellDef="let job">{{job.serviceName}}</mat-cell>
+      <mat-cell *matCellDef="let job">{{job.service_name}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="startedAt">
       <mat-header-cell *matHeaderCellDef>Started At</mat-header-cell>
-      <mat-cell *matCellDef="let job">{{job.startedAt ? job.startedAt : '---'}}</mat-cell>
+      <mat-cell *matCellDef="let job">{{job.started_at ? job.started_at : '---'}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="endedAt">
       <mat-header-cell *matHeaderCellDef>Ended At</mat-header-cell>
-      <mat-cell *matCellDef="let job">{{job.endedAt ? job.endedAt : '---'}}</mat-cell>
+      <mat-cell *matCellDef="let job">{{job.ended_at ? job.ended_at : '---'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let job">
+        <a mat-icon-button [routerLink]="[job.id]">
+          <mat-icon>arrow_right_alt</mat-icon>
+        </a>
+      </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns; let e = even;" [ngClass]="{'even' : e}"></mat-row>

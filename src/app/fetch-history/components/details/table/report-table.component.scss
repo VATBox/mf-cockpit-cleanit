@@ -1,0 +1,27 @@
+.table-container {
+  position: relative;
+  min-height: 75vh;
+  .report-table {
+    width: 100%;
+    .mat-row.transactions-row {
+      min-height: 0;
+    }
+
+    .mat-row.report-row:not(.expanded-row):hover {
+      background: whitesmoke;
+    }
+
+    .mat-row.report-row:not(.expanded-row):active {
+      background: #efefef;
+    }
+
+    .report-row .mat-cell {
+      border-bottom-width: 0;
+    }
+
+    .transactions-detail {
+      overflow: hidden;
+      display: flex;
+    }
+  }
+}

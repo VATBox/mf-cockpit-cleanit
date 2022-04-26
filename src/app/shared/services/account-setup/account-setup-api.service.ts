@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { delay, Observable, tap } from 'rxjs';
 import { Account } from '~/shared/models/account.model';
+import { AccountByIdPipe } from '~/shared/pipes/account-by-id.pipe';
 
 @Injectable()
 export class AccountSetupApiService {
@@ -12,6 +13,9 @@ export class AccountSetupApiService {
   constructor(private http: HttpClient) {}
 
   public getAllAccounts(): Observable<Account[]> {
-    return this.http.get<Account[]>(`${AccountSetupApiService.ADMIN_API}/accounts`);
+    return this.http.get<Account[]>(`${AccountSetupApiService.ADMIN_API}/accounts`).pipe(
+      delay(3000),
+      tap(res => AccountByIdPipe.init(res)),
+    );
   }
 }

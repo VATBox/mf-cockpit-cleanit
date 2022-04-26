@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -37,8 +39,10 @@ export const MY_DATE_FORMATS = {
 
 @NgModule({
   imports: [
+    CdkAccordionModule,
     MatAutocompleteModule,
     MatNativeDateModule,
+    MatExpansionModule,
     MatDatepickerModule,
     MatGridListModule,
     MatCardModule,
@@ -62,8 +66,10 @@ export const MY_DATE_FORMATS = {
     MatRadioModule,
   ],
   exports: [
+    CdkAccordionModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatExpansionModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,

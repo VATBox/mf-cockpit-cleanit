@@ -1,0 +1,48 @@
+<div class='table-container'>
+  <mat-table [dataSource]="dataSource" multiTemplateDataRows class='report-table'>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let report">{{report.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef>Created At</mat-header-cell>
+      <mat-cell *matCellDef="let report">{{report.createdAt ? report.createdAt : '---'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="endedAt">
+      <mat-header-cell *matHeaderCellDef>Ended At</mat-header-cell>
+      <mat-cell *matCellDef="let report">{{report.endedAt ? report.endedAt : '---'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="transactionCount">
+      <mat-header-cell *matHeaderCellDef>Transaction Count</mat-header-cell>
+      <mat-cell *matCellDef="let report">{{report.transactionCount}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let report">
+        <a mat-icon-button [routerLink]="[report.id]">
+          <mat-icon>arrow_right_alt</mat-icon>
+        </a>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="expandedDetail">
+      <mat-cell *matCellDef="let report" [attr.colspan]="displayedColumns.length">
+        <div class="transactions-detail"
+             [@detailExpand]="report == expandedElement ? 'expanded' : 'collapsed'">
+          <div *ngFor="let transaction of report.transactions">
+            <div *ngFor="let item of transaction | keyvalue">
+              {{item.key}}:{{item.value}}
+            </div>
+          </div>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let e = even;"
+             [ngClass]="{'even' : e}"
+             class="report-row"
+             [class.expanded-row]="expandedElement === row"
+             (click)="expandedElement = expandedElement === row ? null : row">
+    </mat-row>
+    <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="transactions-row"></mat-row>
+  </mat-table>
+</div>

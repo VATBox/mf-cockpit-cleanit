@@ -8,7 +8,7 @@ import { JobModel } from '~/shared/models/data-puller.model';
   styleUrls: ['./history-table.component.scss'],
 })
 export class HistoryTableComponent implements OnInit, OnDestroy {
-  public displayedColumns = ['id', 'accountId', 'serviceName', 'startedAt', 'endedAt'];
+  public displayedColumns = ['id', 'account', 'serviceName', 'startedAt', 'endedAt', 'action'];
   public dataSource: MatTableDataSource<JobModel>;
   @Input() public loading: boolean;
   @Input()
