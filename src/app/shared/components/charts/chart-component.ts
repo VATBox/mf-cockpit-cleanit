@@ -84,11 +84,16 @@ export class ChartComponent implements OnDestroy {
       chart.data = data;
       chart.scrollbarX = new am4core.Scrollbar();
       chart.events.on('ready', function() {
-        const lastDay = data.reduce((a, b) => {
+        const maxDate = data.reduce((a, b) => {
           return new Date(a.started_at) > new Date(b.started_at) ? a : b;
         }).started_at as Date;
-        const firstDay = new Date(lastDay.getFullYear(), lastDay.getMonth(), 10);
-        dateAxis.zoomToDates(firstDay, lastDay);
+        const minDate = data.reduce((a, b) => {
+          return new Date(a.started_at) < new Date(b.started_at) ? a : b;
+        }).started_at as Date;
+        const diffTimes = maxDate.getTime() - minDate.getTime();
+        const diffDays = Math.ceil(diffTimes / (1000 * 3600 * 24));
+        const firstDay = new Date(maxDate.getFullYear(), maxDate.getMonth(), 0);
+        if (diffDays > 31) dateAxis.zoomToDates(firstDay, maxDate);
       });
       this.chart = chart;
     });
