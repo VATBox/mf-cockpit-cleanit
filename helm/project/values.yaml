@@ -55,10 +55,10 @@ generic:
   # Adjust according to the service requirements
   resources:
     requests:
-      cpu: 100m
+      cpu: 200m
       memory: 256Mi
     limits:
-      cpu: 100m
+      cpu: 200m
       memory: 256Mi
 
   # Autoscailer
