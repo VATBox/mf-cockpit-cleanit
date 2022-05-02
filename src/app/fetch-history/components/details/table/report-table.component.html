@@ -1,3 +1,4 @@
+<h3>Reports List</h3>
 <div class='table-container'>
   <mat-table [dataSource]="dataSource" multiTemplateDataRows class='report-table'>
     <ng-container matColumnDef="id">
@@ -6,11 +7,11 @@
     </ng-container>
     <ng-container matColumnDef="createdAt">
       <mat-header-cell *matHeaderCellDef>Created At</mat-header-cell>
-      <mat-cell *matCellDef="let report">{{report.createdAt ? report.createdAt : '---'}}</mat-cell>
+      <mat-cell *matCellDef="let report">{{report.createdAt ? (report.createdAt  | date) : '---'}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="endedAt">
       <mat-header-cell *matHeaderCellDef>Ended At</mat-header-cell>
-      <mat-cell *matCellDef="let report">{{report.endedAt ? report.endedAt : '---'}}</mat-cell>
+      <mat-cell *matCellDef="let report">{{report.endedAt ? (report.endedAt  | date) : '---'}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="transactionCount">
       <mat-header-cell *matHeaderCellDef>Transaction Count</mat-header-cell>
@@ -26,13 +27,35 @@
     </ng-container>
     <ng-container matColumnDef="expandedDetail">
       <mat-cell *matCellDef="let report" [attr.colspan]="displayedColumns.length">
-        <div class="transactions-detail"
-             [@detailExpand]="report == expandedElement ? 'expanded' : 'collapsed'">
-          <div *ngFor="let transaction of report.transactions">
-            <div *ngFor="let item of transaction | keyvalue">
-              {{item.key}}:{{item.value}}
+        <div class="transactions-detail" [@detailExpand]="report == expandedElement ? 'expanded' : 'collapsed'">
+            <h3>Transactions List</h3>
+            <div class="transaction-table">
+              <div class="row header">
+                <div class="cell id">Id</div>
+                <div class="cell status">Status</div>
+                <div class="cell fetchedAt">Fetched At</div>
+                <div class="cell exportDate">Export Date</div>
+                <div class="cell imageExists">Image Exists</div>
+                <div class="cell sentTransaction">Sent Transaction</div>
+                <div class="cell sentImaginary">Sent Imaginary</div>
+              </div>
+              <ng-container *ngFor="let transaction of report.transactions">
+                <div class="row">
+                  <div class="cell id">{{transaction.id}}</div>
+                  <div class="cell status">{{transaction.status ? 'True' : 'False'}}</div>
+                  <div class="cell fetchedAt">{{transaction.fetchedAt | date}}</div>
+                  <div class="cell exportDate">{{transaction.exportDate | date}}</div>
+                  <div class="cell imageExists">{{transaction.imageExists}}</div>
+                  <div class="cell sentTransaction">{{transaction.sentTransaction}}</div>
+                  <div class="cell sentTransaction">{{transaction.sentImaginary}}</div>
+                </div>
+              </ng-container>
             </div>
-          </div>
+<!--          <div *ngFor="let transaction of report.transactions">-->
+<!--            <div *ngFor="let item of transaction | keyvalue">-->
+<!--              {{item.key}}:{{item.value}}-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
       </mat-cell>
     </ng-container>

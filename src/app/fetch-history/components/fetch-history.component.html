@@ -16,8 +16,8 @@
   </div>
   <div class="history-content">
     <ng-container *ngIf="(jobList$ | async) as jobList; else elseBlock">
-      <mat-accordion class="chart-accordion">
-        <mat-expansion-panel>
+      <mat-accordion class="chart-accordion" ex>
+        <mat-expansion-panel expanded="true">
           <mat-expansion-panel-header>
             <mat-panel-description>
               Analytic chart

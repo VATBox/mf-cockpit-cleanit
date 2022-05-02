@@ -14,11 +14,11 @@
     </ng-container>
     <ng-container matColumnDef="startedAt">
       <mat-header-cell *matHeaderCellDef>Started At</mat-header-cell>
-      <mat-cell *matCellDef="let job">{{job.started_at ? job.started_at : '---'}}</mat-cell>
+      <mat-cell *matCellDef="let job">{{job.started_at ? (job.started_at  | date) : '---'}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="endedAt">
       <mat-header-cell *matHeaderCellDef>Ended At</mat-header-cell>
-      <mat-cell *matCellDef="let job">{{job.ended_at ? job.ended_at : '---'}}</mat-cell>
+      <mat-cell *matCellDef="let job">{{job.ended_at ? (job.ended_at  | date) : '---'}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>

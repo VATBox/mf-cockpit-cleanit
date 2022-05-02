@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { delay, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import {
   FetchRequestModel,
   HistoryResponseModel,
@@ -17,7 +17,7 @@ export class DataPullerApiService {
   constructor(private http: HttpClient) {}
 
   public fetchData(data: FetchRequestModel): Observable<any> {
-    return this.http.post(DataPullerApiService.FETCH_DATA_API, data).pipe(delay(1000));
+    return this.http.post(DataPullerApiService.FETCH_DATA_API, data);
   }
 
   public getJobList(accountId: number | null): Observable<HistoryResponseModel> {

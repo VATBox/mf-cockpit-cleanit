@@ -36,7 +36,7 @@ export interface JobModel {
     pullDate: string;
   };
   error: string;
-  started_at: string;
+  started_at: string | Date;
   ended_at: string;
   service_name: string;
   created_at: string;

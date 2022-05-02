@@ -15,38 +15,6 @@ import { JobModel } from '~/shared/models/data-puller.model';
 export class ChartComponent implements OnDestroy {
   private chart: am4charts.XYChart;
   private _data: JobModel[];
-  // public chartData = [
-  //   {
-  //     startedAt: '2009',
-  //     reportsCount: 20,
-  //     fetchedImages: 2,
-  //   },
-  //   {
-  //     startedAt: '2010',
-  //     reportsCount: 40,
-  //     fetchedImages: 10,
-  //   },
-  //   {
-  //     startedAt: '2011',
-  //     reportsCount: 80,
-  //     fetchedImages: 5,
-  //   },
-  //   {
-  //     startedAt: '2012',
-  //     reportsCount: 100,
-  //     fetchedImages: 100,
-  //   },
-  //   {
-  //     startedAt: '2013',
-  //     reportsCount: 120,
-  //     fetchedImages: 220,
-  //   },
-  //   {
-  //     startedAt: '2014',
-  //     reportsCount: 400,
-  //     fetchedImages: 50,
-  //   },
-  // ];
 
   @Input()
   public set data(data: JobModel[]) {
@@ -73,6 +41,12 @@ export class ChartComponent implements OnDestroy {
 
   public init(data: JobModel[]): void {
     // Chart code goes in here
+    data = data.map(res => {
+      return {
+        ...res,
+        started_at: new Date(res.started_at),
+      };
+    });
     this.browserOnly(() => {
       am4core.useTheme(am4themes_animated);
 
@@ -83,15 +57,14 @@ export class ChartComponent implements OnDestroy {
 
       /* Create axes */
       let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+      dateAxis.baseInterval = {
+        timeUnit: 'day',
+        count: 1,
+      };
       dateAxis.renderer.minGridDistance = 30;
-
-      // let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-      // categoryAxis.dataFields.category = 'started_at';
-      // categoryAxis.renderer.minGridDistance = 30;
 
       /* Create value axis */
       let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-      valueAxis.min = 0;
 
       this.createLineSeries(
         'Fetched Transactions',
@@ -109,6 +82,14 @@ export class ChartComponent implements OnDestroy {
       );
 
       chart.data = data;
+      chart.scrollbarX = new am4core.Scrollbar();
+      chart.events.on('ready', function() {
+        const lastDay = data.reduce((a, b) => {
+          return new Date(a.started_at) > new Date(b.started_at) ? a : b;
+        }).started_at as Date;
+        const firstDay = new Date(lastDay.getFullYear(), lastDay.getMonth(), 10);
+        dateAxis.zoomToDates(firstDay, lastDay);
+      });
       this.chart = chart;
     });
   }
