@@ -11,7 +11,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:single-spa": "ng build mf-cockpit-data-puller --configuration production",
-    "serve:single-spa": "ng s --project mf-cockpit-data-puller --disable-host-check --port 4205 --deploy-url http://localhost:4205/ --live-reload false"
+    "serve:single-spa": "ng s --project mf-cockpit-data-puller --disable-host-check --port 4205 --live-reload false"
   },
   "private": true,
   "dependencies": {
