@@ -5,12 +5,19 @@ import { EmptyRouteComponent } from '~/empty-route/empty-route.component';
 
 const routes: Routes = [
   {
-    path: 'manual-fetch',
-    loadChildren: () => import('./manual-fetch/manual-fetch.module').then(m => m.ManualFetchModule),
-  },
-  {
-    path: 'fetch-history',
-    loadChildren: () => import('./fetch-history/fetch-history.module').then(m => m.FetchHistoryModule),
+    path: 'data-puller',
+    children: [
+      {
+        path: 'manual-fetch',
+        loadChildren: () =>
+          import('./manual-fetch/manual-fetch.module').then(m => m.ManualFetchModule),
+      },
+      {
+        path: 'fetch-history',
+        loadChildren: () =>
+          import('./fetch-history/fetch-history.module').then(m => m.FetchHistoryModule),
+      },
+    ],
   },
   { path: '**', component: EmptyRouteComponent },
 ];
@@ -18,6 +25,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/mf-cockpit-data-puller/' }],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
 })
 export class AppRoutingModule {}
