@@ -92,8 +92,8 @@ export class ChartComponent implements OnDestroy {
         }).started_at as Date;
         const diffTimes = maxDate.getTime() - minDate.getTime();
         const diffDays = Math.ceil(diffTimes / (1000 * 3600 * 24));
-        const firstDay = new Date(maxDate.getFullYear(), maxDate.getMonth(), 0);
-        if (diffDays > 31) dateAxis.zoomToDates(firstDay, maxDate);
+        const firstDay = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDay() - 15);
+        if (diffDays > 15) dateAxis.zoomToDates(firstDay, maxDate);
       });
       this.chart = chart;
     });
