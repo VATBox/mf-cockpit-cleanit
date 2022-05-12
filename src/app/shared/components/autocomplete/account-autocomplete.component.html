@@ -1,0 +1,24 @@
+<mat-form-field appearance="outline">
+  <mat-label>Select Account</mat-label>
+  <mat-select (selectionChange)="selectAccount($event)" required [(ngModel)]="selectedAccountId">
+    <ng-container *ngIf="accounts?.length > 0; else loading">
+      <input matInput autocomplete="off" class="account-search-input"
+             placeholder="Search account ..."
+             (keydown)="$event.stopPropagation()"
+             [formControl]="accountFilterFC"/>
+      <cdk-virtual-scroll-viewport [itemSize]="42" [style.height.px]=5*42>
+        <mat-option *ngFor="let account of (filteredAccounts$ | async)" [value]='account.id'>
+          {{account.name}}
+        </mat-option>
+      </cdk-virtual-scroll-viewport>
+    </ng-container>
+    <ng-template #loading>
+      <mat-option disabled>
+        <div fxLayoutAlign="space-between center">
+          <span>Loading...</span>
+          <mat-spinner class="spinner" diameter="20"></mat-spinner>
+        </div>
+      </mat-option>
+    </ng-template>
+  </mat-select>
+</mat-form-field>

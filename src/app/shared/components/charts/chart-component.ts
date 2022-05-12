@@ -61,10 +61,10 @@ export class ChartComponent implements OnDestroy {
         timeUnit: 'day',
         count: 1,
       };
-      dateAxis.renderer.minGridDistance = 30;
 
       /* Create value axis */
       let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      valueAxis.min  = 0;
 
       this.createLineSeries(
         'Fetched Transactions',
@@ -84,16 +84,18 @@ export class ChartComponent implements OnDestroy {
       chart.data = data;
       chart.scrollbarX = new am4core.Scrollbar();
       chart.events.on('ready', function() {
-        const maxDate = data.reduce((a, b) => {
-          return new Date(a.started_at) > new Date(b.started_at) ? a : b;
-        }).started_at as Date;
-        const minDate = data.reduce((a, b) => {
-          return new Date(a.started_at) < new Date(b.started_at) ? a : b;
-        }).started_at as Date;
-        const diffTimes = maxDate.getTime() - minDate.getTime();
-        const diffDays = Math.ceil(diffTimes / (1000 * 3600 * 24));
-        const firstDay = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDay() - 15);
-        if (diffDays > 15) dateAxis.zoomToDates(firstDay, maxDate);
+        if (data && data.length > 0) {
+          const maxDate = data.reduce((a, b) => {
+            return new Date(a.started_at) > new Date(b.started_at) ? a : b;
+          }).started_at as Date;
+          const minDate = data.reduce((a, b) => {
+            return new Date(a.started_at) < new Date(b.started_at) ? a : b;
+          }).started_at as Date;
+          const diffTimes = maxDate.getTime() - minDate.getTime();
+          const diffDays = Math.ceil(diffTimes / (1000 * 3600 * 24));
+          const firstDay = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDay() - 15);
+          if (diffDays > 15) dateAxis.zoomToDates(firstDay, maxDate);
+        }
       });
       this.chart = chart;
     });

@@ -13,10 +13,12 @@ import { ConfigurationAPIService } from '~/shared/services/configuration/configu
 import { AccountSetupApiService } from '~/shared/services/account-setup/account-setup-api.service';
 import { ChartComponent } from '~/shared/components/charts/chart-component';
 import { AccountByIdPipe } from '~/shared/pipes/account-by-id.pipe';
+import { AccountAutocompleteComponent } from '~/shared/components/autocomplete/account-autocomplete.component';
 
 @NgModule({
   declarations: [
     // Components
+    AccountAutocompleteComponent,
     ChartComponent,
     EmptyRouteComponent,
     AccountByIdPipe,
@@ -35,6 +37,7 @@ import { AccountByIdPipe } from '~/shared/pipes/account-by-id.pipe';
   ],
   exports: [
     // Components
+    AccountAutocompleteComponent,
     EmptyRouteComponent,
     ChartComponent,
     // Modules

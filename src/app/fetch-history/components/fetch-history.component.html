@@ -1,19 +1,16 @@
 <div class="fetch-history-container" fxLayout="column" *ngIf="(accounts$ | async) as accounts; else loadingBlock">
   <h1>Fetch History</h1>
-  <div class="fetch-history-filter" fxLayoutGap="20px">
-    <mat-form-field appearance="outline" fxFlex='300px'>
-      <mat-label>Select Account</mat-label>
-      <mat-select [formControl]="accountControl"
-                  (selectionChange)="selectAccount($event)">
-        <mat-option *ngFor="let account of accounts" [value]='account.id'>
-          {{account.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button class="clear-filter" mat-icon-button (click)="selectAccount({value: null, source: null})">
+  <form [formGroup]="accountForm" class="fetch-history-filter" fxLayoutGap="20px">
+    <account-autocomplete
+      [accounts]="accounts"
+      [reset]="reset"
+      formControlName="accountId"
+      fxFlex='300px'>
+    </account-autocomplete>
+    <button class="clear-filter" mat-icon-button (click)="clearFilter()">
       <mat-icon>close</mat-icon>
     </button>
-  </div>
+  </form>
   <div class="history-content">
     <ng-container *ngIf="(jobList$ | async) as jobList; else elseBlock">
       <mat-accordion class="chart-accordion" ex>

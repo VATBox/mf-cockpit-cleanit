@@ -5,24 +5,11 @@
          fxLayoutAlign="space-between center"
          fxFlex="100%"
          fxLayoutGap="20px">
-      <mat-form-field appearance="outline" fxFlex='100%'>
-        <mat-label>Select Account</mat-label>
-        <mat-select formControlName="accountId">
-          <ng-container *ngIf="(accounts$ | async) as accounts; else loading">
-            <mat-option *ngFor="let account of accounts" [value]='account.id'>
-              {{account.name}}
-            </mat-option>
-          </ng-container>
-          <ng-template #loading>
-            <mat-option disabled>
-              <div fxLayoutAlign="space-between center">
-                <span>Loading...</span>
-                <mat-spinner class="spinner" diameter="20"></mat-spinner>
-              </div>
-            </mat-option>
-          </ng-template>
-        </mat-select>
-      </mat-form-field>
+      <account-autocomplete
+        [accounts]="(accounts$ | async)"
+        formControlName="accountId"
+        fxFlex='100%'>
+      </account-autocomplete>
       <mat-form-field appearance="outline" fxFlex='100%'>
         <mat-label>Select Source</mat-label>
         <mat-select formControlName="serviceName">
@@ -41,7 +28,7 @@
     <div class="form-row">
       <a mat-flat-button color='primary'
          [disabled]="!fetchForm.valid"
-         (click)='fetchData(fetchForm.value)'>
+         (click)='fetchData(fetchForm.value, fetchForm.valid)'>
         Fetch Data
       </a>
     </div>

@@ -21,9 +21,20 @@ export class DataPullerApiService {
   }
 
   public getJobList(accountId: number | null): Observable<HistoryResponseModel> {
-    return this.http.post<HistoryResponseModel>(`${DataPullerApiService.JOB_LIST_API}`, {
-      accountId,
-    });
+    return this.http
+      .post<HistoryResponseModel>(`${DataPullerApiService.JOB_LIST_API}`, {
+        accountId,
+      })
+      .pipe(
+        map(res => {
+          return {
+            ...res,
+            jobs: res.jobs.sort(function(a, b) {
+              return (new Date(b.started_at)).getTime() - (new Date(a.started_at)).getTime();
+            }),
+          };
+        }),
+      );
   }
 
   public getJobItem(jobId: string): Observable<JobModel> {

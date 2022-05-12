@@ -33,14 +33,16 @@ export class ManualFetchComponent implements OnInit, OnDestroy {
     this.accounts$ = this.service.accounts$;
   }
 
-  public fetchData(data: FetchRequestModel): void {
-    let ref: MatDialogRef<ConfirmDialogComponent>;
-    ref = this.dialog.open(ConfirmDialogComponent);
-    ref.afterClosed().subscribe(result => {
-      if (result) {
-        this.service.fetchData(data);
-      }
-    });
+  public fetchData(data: FetchRequestModel, valid: boolean): void {
+    if (valid) {
+      let ref: MatDialogRef<ConfirmDialogComponent>;
+      ref = this.dialog.open(ConfirmDialogComponent);
+      ref.afterClosed().subscribe(result => {
+        if (result) {
+          this.service.fetchData(data);
+        }
+      });
+    }
   }
 
   public ngOnDestroy(): void {}

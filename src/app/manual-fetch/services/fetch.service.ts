@@ -37,7 +37,9 @@ export class FetchService {
     this.dataPullerApiService.fetchData(requestData).subscribe(
       () => {
         this.loadingSubject.next(false);
-        this.router.navigate(['data-puller/fetch-history']).then();
+        this.router
+          .navigate(['data-puller/fetch-history'], { queryParams: { accountId: data.accountId } })
+          .then();
       },
       err => console.log(err),
     );
