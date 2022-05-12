@@ -6,6 +6,7 @@
          fxFlex="100%"
          fxLayoutGap="20px">
       <account-autocomplete
+        [isRequired]="true"
         [accounts]="(accounts$ | async)"
         formControlName="accountId"
         fxFlex='100%'>

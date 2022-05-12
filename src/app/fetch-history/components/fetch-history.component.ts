@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { distinctUntilChanged, Observable } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { JobModel } from '~/shared/models/data-puller.model';
 import { Account } from '~/shared/models/account.model';
@@ -22,7 +22,7 @@ export class FetchHistoryComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private service: FetchHistoryService, private fb: FormBuilder) {
     this.accountForm = this.fb.group({
-      accountId: new FormControl('', Validators.required),
+      accountId: new FormControl(''),
     });
   }
 

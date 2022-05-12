@@ -37,6 +37,7 @@ export class AccountAutocompleteComponent implements ControlValueAccessor, OnIni
   private onChange = (accountId: number | null) => {};
   private onTouched = () => {};
 
+  @Input() public isRequired: boolean = false;
   @Input() public selectedAccountId: number | null;
   @Input() public accounts: Account[] = [];
   @Input()
