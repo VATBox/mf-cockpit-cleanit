@@ -1,0 +1,8 @@
+<div class="uploads-list-container">
+  <uploads-table [uploads]="uploadsList$ | async"></uploads-table>
+  <div class="loading-section" *ngIf="loading$ | async">
+    <div>
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </div>
+</div>

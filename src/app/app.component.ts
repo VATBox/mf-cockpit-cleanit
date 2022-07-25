@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import * as am4core from '@amcharts/amcharts4/core';
 
 @Component({
   selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  public ngOnInit(): void {
-    this.initAmCharts();
-  }
-
-  private initAmCharts() {
-    am4core.addLicense('CH239071588');
-    am4core.addLicense('MP280514346');
-  }
+  title = 'QCS-admin-panel';
+  public links = [
+    { path: 'cleanit/upload', label: 'Upload' },
+    { path: 'cleanit/uploads-list', label: 'List Of Uploads' },
+  ];
+  public activeLink = this.links[0];
+  public ngOnInit(): void {}
 }

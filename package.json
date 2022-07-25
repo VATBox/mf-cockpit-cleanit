@@ -1,5 +1,5 @@
 {
-  "name": "mf-cockpit-data-puller",
+  "name": "mf-cockpit-cleanit",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,12 +10,11 @@
     "start:dev": "run-s build:single-spa & ts-node --files ./server/index.ts",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:single-spa": "ng build mf-cockpit-data-puller --configuration production",
-    "serve:single-spa": "ng s --project mf-cockpit-data-puller --disable-host-check --port 4205 --live-reload false"
+    "build:single-spa": "ng build mf-cockpit-cleanit --configuration production",
+    "serve:single-spa": "ng s --project mf-cockpit-cleanit --disable-host-check --port 4205 --live-reload false"
   },
   "private": true,
   "dependencies": {
-    "@amcharts/amcharts4": "^4.10.2",
     "@angular/animations": "~13.3.0",
     "@angular/cdk": "^13.3.2",
     "@angular/common": "~13.3.0",

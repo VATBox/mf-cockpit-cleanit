@@ -1,0 +1,53 @@
+.upload-container {
+  padding: 30px;
+  margin: 0 auto;
+  .not-visible {
+    visibility: hidden;
+  }
+  .upload-block {
+    position: relative;
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px dashed #757575FF;
+    min-height: 300px;
+    .mat-icon {
+      font-size: 48px;
+      height: 48px;
+      width: 48px;
+      line-height: 48px;
+      color: #757575;
+    }
+    h2 {
+      font-weight: 500;
+      color: #757575;
+    }
+    .error-message {
+      font-size: 14px;
+      color: red;
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      .mat-icon {
+        font-size: 24px;
+        height: 24px;
+        width: 24px;
+        line-height: 24px;
+        color: red;
+      }
+    }
+    &.fileover {
+      background-color: #c0c0c4;
+      .mat-icon {
+        color: #000000;
+      }
+      h2 {
+        color: #000000;
+      }
+    }
+    .upload-button {
+      max-width: 300px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}

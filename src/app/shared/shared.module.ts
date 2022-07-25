@@ -7,21 +7,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { CdkModule } from './cdk.module';
 import { MaterialModule } from './material.module';
-import { EmptyRouteComponent } from '~/empty-route/empty-route.component';
-import { DataPullerApiService } from '~/shared/services/data-puller/data-puller-api.service';
-import { ConfigurationAPIService } from '~/shared/services/configuration/configuration-api.service';
-import { AccountSetupApiService } from '~/shared/services/account-setup/account-setup-api.service';
-import { ChartComponent } from '~/shared/components/charts/chart-component';
-import { AccountByIdPipe } from '~/shared/pipes/account-by-id.pipe';
-import { AccountAutocompleteComponent } from '~/shared/components/autocomplete/account-autocomplete.component';
+import { CleanitApiService } from '~/shared/services/ceanit/cleanit-api.service';
 
 @NgModule({
   declarations: [
     // Components
-    AccountAutocompleteComponent,
-    ChartComponent,
-    EmptyRouteComponent,
-    AccountByIdPipe,
     // Directives
   ],
   imports: [
@@ -37,9 +27,7 @@ import { AccountAutocompleteComponent } from '~/shared/components/autocomplete/a
   ],
   exports: [
     // Components
-    AccountAutocompleteComponent,
-    EmptyRouteComponent,
-    ChartComponent,
+
     // Modules
     CommonModule,
     FormsModule,
@@ -50,14 +38,8 @@ import { AccountAutocompleteComponent } from '~/shared/components/autocomplete/a
     CdkModule,
     MaterialModule,
     // Pipes,
-    AccountByIdPipe,
   ],
-  providers: [
-    DataPullerApiService,
-    ConfigurationAPIService,
-    AccountSetupApiService,
-    AccountByIdPipe,
-  ],
+  providers: [CleanitApiService],
   entryComponents: [],
 })
 export class SharedModule {}

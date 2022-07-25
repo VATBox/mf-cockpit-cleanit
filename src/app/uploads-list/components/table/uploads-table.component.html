@@ -1,0 +1,42 @@
+<div class='table-container'>
+  <mat-table
+    *ngIf='!!dataSource.data && dataSource.data.length; else noUploads'
+    [dataSource]='dataSource'>
+    <ng-container matColumnDef='id'>
+      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+      <mat-cell *matCellDef='let upload'> {{upload.id ? upload.id : ''}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef='date'>
+      <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+      <mat-cell *matCellDef='let upload'> {{upload.date | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef='createdBy'>
+      <mat-header-cell *matHeaderCellDef>Created By</mat-header-cell>
+      <mat-cell *matCellDef='let upload'> {{upload.createdBy}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef='status'>
+      <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+      <mat-cell *matCellDef='let upload'> {{upload.status}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef='action'>
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef='let upload'>
+          <a mat-icon-button [routerLink]="[upload.id]">
+            <mat-icon>arrow_right_alt</mat-icon>
+         </a>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef='displayedColumns; sticky: true'></mat-header-row>
+    <mat-row *matRowDef='let row; columns: displayedColumns;'></mat-row>
+  </mat-table>
+</div>
+<ng-template #noUploads>
+  <div class='no-uploads' fxLayoutAlign='center center'>
+    {{firstLoading ? 'Loading Data...' : 'No Uploads Found'}}
+  </div>
+</ng-template>

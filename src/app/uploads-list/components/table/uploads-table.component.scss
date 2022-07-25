@@ -1,0 +1,28 @@
+.table-container {
+  height: calc(100vh - 150px);
+  overflow: auto;
+  .mat-header-row {
+    .mat-column-action {
+      width: 40px;
+      max-width: 40px;
+      padding-right: 0;
+    }
+  }
+  .mat-row {
+    &:hover {
+      background-color: #f2f2f2;
+    }
+    .mat-column-action {
+      padding-right: 0;
+      width: 40px;
+      max-width: 40px;
+      text-align: center;
+      .mat-icon {
+        cursor: pointer;
+      }
+    }
+  }
+}
+.no-uploads {
+  height: calc(100vh - 150px);
+}

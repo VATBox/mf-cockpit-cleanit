@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mf-cockpit-data-puller": {
+    "mf-cockpit-cleanit": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -40,7 +40,7 @@
               "libraryName": "mf-cockpit-navbar",
               "libraryTarget": "umd"
             },
-            "deployUrl": "/mf-cockpit-data-puller/"
+            "deployUrl": "/mf-cockpit-cleanit/"
           },
           "configurations": {
             "production": {
@@ -79,15 +79,15 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "mf-cockpit-data-puller:build",
+            "browserTarget": "mf-cockpit-cleanit:build",
             "proxyConfig": "./proxy.conf.js"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mf-cockpit-data-puller:build:production"
+              "browserTarget": "mf-cockpit-cleanit:build:production"
             },
             "development": {
-              "browserTarget": "mf-cockpit-data-puller:build:development"
+              "browserTarget": "mf-cockpit-cleanit:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -95,7 +95,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mf-cockpit-data-puller:build"
+            "browserTarget": "mf-cockpit-cleanit:build"
           }
         },
         "test": {
@@ -117,5 +117,5 @@
       }
     }
   },
-  "defaultProject": "mf-cockpit-data-puller"
+  "defaultProject": "mf-cockpit-cleanit"
 }

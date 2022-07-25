@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -57,6 +58,7 @@ export const MY_DATE_FORMATS = {
     MatProgressSpinnerModule,
     MatIconModule,
     MatListModule,
+    MatTabsModule,
     MatTableModule,
     MatTooltipModule,
     MatSelectModule,
@@ -83,6 +85,7 @@ export const MY_DATE_FORMATS = {
     MatProgressSpinnerModule,
     MatIconModule,
     MatListModule,
+    MatTabsModule,
     MatTableModule,
     MatTooltipModule,
     MatSelectModule,

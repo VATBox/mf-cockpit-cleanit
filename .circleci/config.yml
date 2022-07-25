@@ -29,7 +29,7 @@ jobs:
       - vb_helm_build/npm_install
 
       - run:
-          name: Setup navbar project
+          name: Setup MF Cockpit Cleanit project
           command: |
             npm install --prefix page-server/
 

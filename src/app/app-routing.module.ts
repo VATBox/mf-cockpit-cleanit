@@ -1,25 +1,24 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmptyRouteComponent } from '~/empty-route/empty-route.component';
 
 const routes: Routes = [
   {
-    path: 'data-puller',
+    path: 'cleanit',
     children: [
       {
-        path: 'manual-fetch',
+        path: 'upload',
         loadChildren: () =>
-          import('./manual-fetch/manual-fetch.module').then(m => m.ManualFetchModule),
+          import('./upload/upload.module').then(m => m.UploadModule),
       },
       {
-        path: 'fetch-history',
+        path: 'uploads-list',
         loadChildren: () =>
-          import('./fetch-history/fetch-history.module').then(m => m.FetchHistoryModule),
+          import('./uploads-list/uploads-list.module').then(m => m.UploadsListModule),
       },
     ],
   },
-  { path: '**', component: EmptyRouteComponent },
+  { path: '**', redirectTo: 'cleanit/upload', pathMatch: 'full' },
 ];
 
 @NgModule({
