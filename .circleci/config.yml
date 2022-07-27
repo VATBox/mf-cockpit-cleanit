@@ -49,7 +49,7 @@ workflows:
             branches:
               only:
                 - master
-                - SN-1326-fetch-data
+                - url-path-tab
             tags:
               only: /.*/
 
