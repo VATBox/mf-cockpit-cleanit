@@ -8,10 +8,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CdkModule } from './cdk.module';
 import { MaterialModule } from './material.module';
 import { CleanitApiService } from '~/shared/services/ceanit/cleanit-api.service';
+import { AccountByIdPipe } from '~/shared/pipes/account-by-id.pipe';
+import { AccountSetupApiService } from '~/shared/services/account-setup/account-setup-api.service';
 
 @NgModule({
   declarations: [
     // Components
+    AccountByIdPipe,
     // Directives
   ],
   imports: [
@@ -37,9 +40,10 @@ import { CleanitApiService } from '~/shared/services/ceanit/cleanit-api.service'
     HttpClientModule,
     CdkModule,
     MaterialModule,
+    AccountByIdPipe,
     // Pipes,
   ],
-  providers: [CleanitApiService],
+  providers: [CleanitApiService, AccountByIdPipe, AccountSetupApiService],
   entryComponents: [],
 })
 export class SharedModule {}

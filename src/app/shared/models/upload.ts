@@ -1,5 +1,5 @@
 export interface UploadItem {
-  id: number;
+  _id: string;
   date: string;
   createdBy: string;
   status: string; // created, pending, failed, completed

@@ -1,1 +1,34 @@
-<h1>Upload Details</h1>
+<div class="upload-details-container" fxLayout="column" fxLayoutAlign='start center' fxLayoutGap="10px">
+  <ng-container *ngIf="(uploadItem$ | async) as uploadItem">
+    <div class="table">
+      <div class="row header">
+        <div class="cell report-id">Report Id</div>
+        <div class="cell date">Date</div>
+        <div class="cell by">By</div>
+        <div class="cell by">Upload Id</div>
+      </div>
+      <div class="row">
+        <div class="cell report-id">test</div>
+        <div class="cell date">{{uploadItem.date | date}}</div>
+        <div class="cell by">{{uploadItem.createdBy}}</div>
+        <div class="cell by">{{uploadItem._id}}</div>
+      </div>
+    </div>
+    <div class="refresh-container"><mat-icon color="primary">refresh</mat-icon></div>
+    <div class="services-list">
+      <div class="service-item"
+           fxLayout="column"
+           fxLayoutAlign='space-around center'
+           *ngFor="let service of uploadItem.services">
+        <div>Name: {{service.serviceName}}</div>
+        <div>Status: {{service.status}}</div>
+        <div>Count: {{service.retryCount}}</div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="loading-section" *ngIf="loading$ | async">
+    <div>
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+  </div>
+</div>
