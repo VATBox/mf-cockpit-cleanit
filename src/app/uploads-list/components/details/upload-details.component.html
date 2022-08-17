@@ -14,15 +14,18 @@
         <div class="cell by">{{uploadItem._id}}</div>
       </div>
     </div>
-    <div class="refresh-container"><mat-icon color="primary">refresh</mat-icon></div>
+    <div class="refresh-container">
+      <mat-icon color="primary">refresh</mat-icon>
+    </div>
     <div class="services-list">
-      <div class="service-item"
-           fxLayout="column"
+      <div fxLayout="column"
            fxLayoutAlign='space-around center'
            *ngFor="let service of uploadItem.services">
-        <div>Name: {{service.serviceName}}</div>
-        <div>Status: {{service.status}}</div>
-        <div>Count: {{service.retryCount}}</div>
+        <div class="service-item"  [ngClass]="(service.status) | lowercase">
+          <div>Name: {{service.serviceName}}</div>
+          <div>Status: {{service.status}}</div>
+          <div>Count: {{service.retryCount}}</div>
+        </div>
       </div>
     </div>
   </ng-container>

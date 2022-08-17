@@ -37,13 +37,23 @@
   .services-list {
     display: grid;
     grid-gap: 15px;
+    grid-template-columns: auto auto auto auto;
     .service-item {
-      background-color: #a6e762;
+      margin: auto;
       padding: 5px;
       box-sizing: border-box;
       border: 1px solid #989898;
       width: 200px;
-      height: 100px;
+      height: 150px;
+    }
+    .pending{
+      background-color: #e7e562;
+    }
+    .finished{
+      background-color: #a6e762;
+    }
+    .failed{
+      background-color: #e76262;
     }
   }
   .refresh-container {
