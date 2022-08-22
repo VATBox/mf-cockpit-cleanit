@@ -24,7 +24,9 @@
         <div class="service-item"  [ngClass]="(service.status) | lowercase">
           <div>Name: {{service.serviceName}}</div>
           <div>Status: {{service.status}}</div>
-          <div>Count: {{service.retryCount}}</div>
+          <div *ngFor="let query of service.queries">
+            <span>Query:{{query.id}} | Count: {{query.beforeDocCount}}</span>
+          </div>
         </div>
       </div>
     </div>
