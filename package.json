@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ts-node --transpile-only --files ./server/index.ts",
-    "build": "ng build --prod",
-    "build-staging": "ng build --prod",
+    "build": "ng build --configuration production",
+    "build-staging": "ng build --configuration staging",
     "start:local": "run-s serve:single-spa",
     "start:dev": "run-s build:single-spa & ts-node --files ./server/index.ts",
     "watch": "ng build --watch --configuration development",
