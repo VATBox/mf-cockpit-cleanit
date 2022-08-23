@@ -2,20 +2,33 @@
   <ng-container *ngIf="(uploadItem$ | async) as uploadItem">
     <div class="table">
       <div class="row header">
-        <div class="cell report-id">Report Id</div>
+        <div class="cell report-id">Number of Reports</div>
         <div class="cell date">Date</div>
         <div class="cell by">By</div>
         <div class="cell by">Upload Id</div>
       </div>
       <div class="row">
-        <div class="cell report-id">test</div>
+        <div class="cell report-id">{{uploadItem.reportIds.length}}</div>
         <div class="cell date">{{uploadItem.date | date}}</div>
         <div class="cell by">{{uploadItem.createdBy}}</div>
         <div class="cell by">{{uploadItem._id}}</div>
       </div>
     </div>
-    <div class="refresh-container">
-      <mat-icon color="primary">refresh</mat-icon>
+<!--    <div class="refresh-container">-->
+<!--      <mat-icon color="primary">refresh</mat-icon>-->
+<!--    </div>-->
+    <div class="validation-container" fxLayout="column" fxLayoutAlign='start' fxLayoutGap="10px">
+      <div>Validated: <span [ngClass]="(uploadItem.validation.validated)+'-color'">{{uploadItem.validation.validated}}</span></div>
+      <div>Is Valid: <span [ngClass]="(uploadItem.validation.valid)+'-color'">{{uploadItem.validation.valid}}</span></div>
+      <div *ngIf="!uploadItem.validation.valid">
+        <div fxLayoutGap="10px">Reason: <span class="color-alert">{{uploadItem.validation.reason}}</span></div>
+        <div fxLayoutGap="10px">
+          Invalid Report ids:
+          <div *ngFor="let  reportId of uploadItem.validation.invalidReports">
+            {{reportId}}
+          </div>
+        </div>
+      </div>
     </div>
     <div class="services-list">
       <div fxLayout="column"

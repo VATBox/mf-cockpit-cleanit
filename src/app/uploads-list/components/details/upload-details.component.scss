@@ -4,6 +4,11 @@
   margin: 0 auto;
   height: calc(100vh - 113px);
   overflow: auto;
+  .validation-container {
+    background-color: #fffff2;
+    padding: inherit;
+    margin: auto;
+  }
   .table {
     position: relative;
     min-width: 500px;
@@ -82,3 +87,18 @@
     left: 50%;
   }
 }
+
+.color-alert{
+  color: darkred;
+}
+.color-success{
+  color: #70ff40;
+}
+.true-color{
+  color: #78f649;
+}
+.false-color{
+  color: darkred;
+}
+
+
