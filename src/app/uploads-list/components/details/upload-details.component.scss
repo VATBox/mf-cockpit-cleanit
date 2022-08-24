@@ -5,9 +5,9 @@
   height: calc(100vh - 113px);
   overflow: auto;
   .validation-container {
-    background-color: #fffff2;
     padding: inherit;
     margin: auto;
+    width: 100%;
   }
   .table {
     position: relative;
@@ -43,13 +43,14 @@
     display: grid;
     grid-gap: 15px;
     grid-template-columns: auto auto auto auto;
+    align-items: start;
     .service-item {
       margin: auto;
       padding: 5px;
       box-sizing: border-box;
       border: 1px solid #989898;
       width: 200px;
-      height: 150px;
+      min-height: 150px;
     }
     .pending{
       background-color: #e7e562;
@@ -59,6 +60,9 @@
     }
     .failed{
       background-color: #e76262;
+    }
+    .inprogress{
+      background-color: #629ce7;
     }
   }
   .refresh-container {

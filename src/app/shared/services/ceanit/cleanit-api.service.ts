@@ -8,13 +8,14 @@ export class CleanitApiService {
   public static BLUE_DOT_CLEAN_IT_SERVICE_NAME = 'cleanit';
   public static API_BASE = `/api/${CleanitApiService.BLUE_DOT_CLEAN_IT_SERVICE_NAME}/v2`;
   public static CLEAN_IT_UPLOADS_LIST_API = `${CleanitApiService.API_BASE}/uploads`;
-  public static CLEAN_IT_UPLOAD_API = `${CleanitApiService.API_BASE}/upload`;
+  public static CLEAN_IT_UPLOAD_API = `${CleanitApiService.CLEAN_IT_UPLOADS_LIST_API}/upload`;
 
   constructor(private http: HttpClient) {}
 
   public uploadCleanItFile(file: File): Observable<HttpEvent<Object>> {
-    return this.http.post(`${CleanitApiService.CLEAN_IT_UPLOAD_API}`, file, {
-      headers: { ['Content-Type']: 'multipart/form-data' },
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post(`${CleanitApiService.CLEAN_IT_UPLOAD_API}`, formData, {
       reportProgress: true,
       observe: 'events',
     });
@@ -22,7 +23,7 @@ export class CleanitApiService {
 
   public getUploadsList(): Observable<UploadItem[]> {
     return this.http
-      .post<{ uploads: UploadItem[] }>(`${CleanitApiService.CLEAN_IT_UPLOADS_LIST_API}`, {})
+      .post<{ uploads: UploadItem[] }>(`${CleanitApiService.CLEAN_IT_UPLOADS_LIST_API}`, {perPage:100})
       .pipe(map(res => res.uploads));
   }
 

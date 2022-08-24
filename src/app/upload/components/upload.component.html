@@ -10,9 +10,7 @@
          fxLayout="column"
          fxLayoutAlign='start center'
          fxLayoutGap="20px"
-         appDnd
-         (fileDropped)="onFileDropped($event)"
-         (fileError)="onFileError($event)">
+         appDnd>
       <div class="error-message"
            *ngIf="!!fileError"
            fxLayoutAlign='start center'

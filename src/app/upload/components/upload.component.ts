@@ -27,8 +27,8 @@ export class UploadComponent implements OnInit, OnDestroy {
 
   public onFileDropped(file: File): void {
     this.file = file;
-    this.service.uploadFilesSimulator();
-    // this.service.uploadCleanItFile(file);
+    // this.service.uploadFilesSimulator();
+    this.service.uploadCleanItFile(file);
   }
 
   public onFileError(error: { message: string }): void {

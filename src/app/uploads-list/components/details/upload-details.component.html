@@ -17,30 +17,30 @@
 <!--    <div class="refresh-container">-->
 <!--      <mat-icon color="primary">refresh</mat-icon>-->
 <!--    </div>-->
-    <div class="validation-container" fxLayout="column" fxLayoutAlign='start' fxLayoutGap="10px">
-      <div>Validated: <span [ngClass]="(uploadItem.validation.validated)+'-color'">{{uploadItem.validation.validated}}</span></div>
-      <div>Is Valid: <span [ngClass]="(uploadItem.validation.valid)+'-color'">{{uploadItem.validation.valid}}</span></div>
-      <div *ngIf="!uploadItem.validation.valid">
-        <div fxLayoutGap="10px">Reason: <span class="color-alert">{{uploadItem.validation.reason}}</span></div>
-        <div fxLayoutGap="10px">
+    <mat-card class="validation-container" fxLayout="column" fxLayoutAlign='start' fxLayoutGap="10px">
+      <mat-card-title>Validated: <span [ngClass]="(uploadItem.validation?.validated)+'-color'">{{uploadItem.validation?.validated}}</span></mat-card-title>
+      <mat-card-title>Is Valid: <span [ngClass]="(uploadItem.validation?.valid)+'-color'">{{uploadItem.validation?.valid}}</span></mat-card-title>
+      <div *ngIf="!uploadItem.validation?.valid">
+        <mat-card-title fxLayoutGap="10px">Reason: <span class="color-alert">{{uploadItem.validation?.reason}}</span></mat-card-title>
+        <mat-card-title fxLayoutGap="10px">
           Invalid Report ids:
-          <div *ngFor="let  reportId of uploadItem.validation.invalidReports">
+          <div *ngFor="let  reportId of uploadItem.validation?.invalidReports">
             {{reportId}}
           </div>
-        </div>
+        </mat-card-title>
       </div>
-    </div>
+    </mat-card>
     <div class="services-list">
       <div fxLayout="column"
            fxLayoutAlign='space-around center'
            *ngFor="let service of uploadItem.services">
-        <div class="service-item"  [ngClass]="(service.status) | lowercase">
-          <div>Name: {{service.serviceName}}</div>
+        <mat-card class="service-item"  [ngClass]="(service.status) | lowercase">
+          <mat-card-title>{{service.serviceName}}</mat-card-title>
           <div>Status: {{service.status}}</div>
           <div *ngFor="let query of service.queries">
             <span>Query:{{query.id}} | Count: {{query.beforeDocCount}}</span>
           </div>
-        </div>
+        </mat-card>
       </div>
     </div>
   </ng-container>
