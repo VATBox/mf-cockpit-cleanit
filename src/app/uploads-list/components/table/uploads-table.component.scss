@@ -22,6 +22,20 @@
       }
     }
   }
+  .mat-icon {
+    &.Finished {
+      color: #a6e762;
+    }
+    &.Failed {
+      color: darkred;
+    }
+    &.Pending {
+      color: #e7e562;
+    }
+    &.InProgress {
+      color: #629ce7;
+    }
+  }
 }
 .no-uploads {
   height: calc(100vh - 150px);

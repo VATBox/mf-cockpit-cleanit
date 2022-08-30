@@ -24,7 +24,16 @@
 
     <ng-container matColumnDef='status'>
       <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-      <mat-cell *matCellDef='let upload'> {{upload.status}} </mat-cell>
+      <mat-cell *matCellDef='let upload'>
+        <div fxLayoutAlign='start center' fxLayoutGap="10px">
+          <mat-icon [class]="upload.status">
+            {{ upload.status === 'Finished' ? 'check_circle_outline' :
+            upload.status === 'Failed' ? 'highlight_off' :
+              upload.status === 'InProgress' ? 'update' : 'pending'  }}
+          </mat-icon>
+          <div>{{upload.status}}</div>
+        </div>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef='action'>

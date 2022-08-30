@@ -8,11 +8,20 @@
         <div class="cell by">Upload Id</div>
       </div>
       <div class="row">
-        <div class="cell report-id">{{uploadItem.reportIds.length}}</div>
+        <div class="cell report-id">
+          <button mat-button [matMenuTriggerFor]="menu">{{uploadItem.reportIds.length}}</button>
+        </div>
         <div class="cell date">{{uploadItem.date | date:'medium'}}</div>
         <div class="cell by">{{uploadItem.createdBy}}</div>
         <div class="cell by">{{uploadItem._id}}</div>
       </div>
+      <mat-menu #menu="matMenu">
+        <mat-list role="list">
+          <mat-list-item *ngFor="let reportId of uploadItem.reportIds" (click)="$event.stopPropagation();">
+            {{reportId}}
+          </mat-list-item>
+        </mat-list>
+      </mat-menu>
     </div>
 <!--    <div class="refresh-container">-->
 <!--      <mat-icon color="primary">refresh</mat-icon>-->
