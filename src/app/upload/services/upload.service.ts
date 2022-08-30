@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { CleanitApiService } from '~/shared/services/ceanit/cleanit-api.service';
+import { Router } from '@angular/router';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+
+import { CleanitApiService } from '~/shared/services/ceanit/cleanit-api.service';
 
 @Injectable()
 export class UploadService {
   private progressSubject = new BehaviorSubject<number>(0);
   public readonly progress$ = this.progressSubject.asObservable();
 
-  constructor(private apiService: CleanitApiService) {}
+  constructor(
+    private apiService: CleanitApiService,
+    private router: Router,
+  ) {}
 
   public uploadCleanItFile(file: File): void {
     this.apiService.uploadCleanItFile(file).subscribe((event: HttpEvent<any>) => {
@@ -24,20 +29,9 @@ export class UploadService {
           break;
         case HttpEventType.Response:
           this.progressSubject.next(100);
+          this.router.navigate(['/cleanit/uploads-list']).then();
       }
     });
-  }
-
-  public uploadFilesSimulator() {
-    setTimeout(() => {
-      const progressInterval = setInterval(() => {
-        if (this.progressSubject.getValue() === 100) {
-          clearInterval(progressInterval);
-        } else {
-          this.progressSubject.next(this.progressSubject.getValue() + 5);
-        }
-      }, 200);
-    }, 1000);
   }
 
   public exportCsvTemplate(): void {

@@ -21,9 +21,12 @@ export class CleanitApiService {
     });
   }
 
-  public getUploadsList(): Observable<UploadItem[]> {
+  public getUploadsList(page: number, perPage: number): Observable<UploadItem[]> {
     return this.http
-      .post<{ uploads: UploadItem[] }>(`${CleanitApiService.CLEAN_IT_UPLOADS_LIST_API}`, {perPage:100})
+      .post<{ uploads: UploadItem[] }>(`${CleanitApiService.CLEAN_IT_UPLOADS_LIST_API}`, {
+        page,
+        perPage,
+      })
       .pipe(map(res => res.uploads));
   }
 

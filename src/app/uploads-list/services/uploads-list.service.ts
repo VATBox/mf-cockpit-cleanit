@@ -11,7 +11,7 @@ export class UploadsListService {
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public readonly loading$ = this.loadingSubject.asObservable();
 
-  private offsetSubject = new BehaviorSubject<number | null>(null);
+  private offsetSubject = new BehaviorSubject<number>(1);
   public readonly offset$ = this.offsetSubject.asObservable();
 
   private routerParamsSubject = new BehaviorSubject<Params>({});
@@ -21,8 +21,8 @@ export class UploadsListService {
     tap(() => {
       this.loadingSubject.next(true);
     }),
-    switchMap(() =>
-      this.apiService.getUploadsList().pipe(
+    switchMap((offset) =>
+      this.apiService.getUploadsList(offset, 15).pipe(
         tap(() => {
           this.loadingSubject.next(false);
         }),
@@ -48,5 +48,9 @@ export class UploadsListService {
 
   public updateRouterParams(params: Params): void {
     this.routerParamsSubject.next(params);
+  }
+
+  public setOffset(page: number): void {
+    this.offsetSubject.next(page);
   }
 }

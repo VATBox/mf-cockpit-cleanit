@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { UploadsListService } from '~/uploads-list/services/uploads-list.service';
-import {UploadItem} from "~/shared/models/upload";
+import { UploadItem } from '~/shared/models/upload';
 
 @Component({
   selector: 'uploads-list',
@@ -20,5 +20,11 @@ export class UploadsListComponent implements OnInit, OnDestroy {
     this.uploadsList$ = this.service.uploadsList$;
   }
 
-  public ngOnDestroy(): void {}
+  public onNextPage(page: number): void {
+    this.service.setOffset(page);
+  }
+
+  public ngOnDestroy(): void {
+    this.service.setOffset(1);
+  }
 }

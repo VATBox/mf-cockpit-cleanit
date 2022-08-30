@@ -1,5 +1,5 @@
 <div class="uploads-list-container">
-  <uploads-table [uploads]="uploadsList$ | async"></uploads-table>
+  <uploads-table [uploads]="uploadsList$ | async" (nextPage)="onNextPage($event)"></uploads-table>
   <div class="loading-section" *ngIf="loading$ | async">
     <div>
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>

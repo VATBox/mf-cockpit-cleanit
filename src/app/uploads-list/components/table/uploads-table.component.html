@@ -1,4 +1,9 @@
-<div class='table-container'>
+<div class='table-container'
+     infinite-scroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="25"
+     (scrolled)="onScroll()"
+     [scrollWindow]="false">
   <mat-table
     *ngIf='!!dataSource.data && dataSource.data.length; else noUploads'
     [dataSource]='dataSource'>
